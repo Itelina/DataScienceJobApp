@@ -1,0 +1,84 @@
+#header {
+    background-color:black;
+    color:white;
+    top:0px;
+    text-align:center;
+    padding:5px;
+    position:absolute;
+    width: 100%;
+}
+
+#navtable {
+    background-color:black;
+    width:90%;
+    color:grey;
+    margin: 0px auto;
+    text-align: center;
+    font-size: 15px;
+    padding:5px; 
+}
+#section {
+    width:100%;
+    top:100px;
+    float:left;
+    padding:0px; 
+    position:fixed;
+    height: 700px;
+    overflow-y: auto;
+}
+
+#bargraphs {
+    float:left;
+    top:110px;
+    width:30%;
+    padding:20px; 
+    position:fixed;
+}
+
+#listsheading {
+    float:left;
+    top:110px;
+    left:550px;
+    width: 55%;
+    padding:20px;
+    height:10%; 
+    position:fixed;
+}
+
+#lists {
+    float:left;
+    width: 60%;
+    padding:20px; 
+    height: 550px;
+    position:fixed;
+    overflow-y: auto;
+    font-size: 16px;
+    font: serif;
+}
+
+a {
+  color: #252525;
+  text-decoration: none;
+}
+
+a:visited {
+  color: #969696;
+}
+
+a:hover {
+  color: #3182bd;
+}
+
+a:active {
+    background-color: #636363;
+}
+#footer {
+    background-color:black;
+    position:absolute;
+    width:100%;
+    bottom:0px;
+    color:white;
+    clear:both;
+    text-align:center;
+    padding:5px; 
+}

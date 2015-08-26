@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+
+<link rel="stylesheet" type="text/css" href="static/css/layout.css">
+
+</head>
+
+<body>
+    <title>{% block title %}{% endblock %}</title>
+
+    <div id="header">
+        <h1>Data Science Jobs in NYC</h1>
+        <table id = "navtable">
+        	<tr style="width: 100%">
+        		<td><a href="/"> Summary </a></td>
+        		<td><a href="/cluster1"> Business Analytics </a></td>
+        		<td><a href="/cluster2"> Health Research </a></td>
+        		<td><a href="/cluster3"> Statistical Analyses </a></td>
+        		<td><a href="/cluster4"> Machine Learning </a></td>
+        		<td><a href="/cluster5"> Insurance Modeling </a></td>
+        		<td><a href="/cluster6"> Engineering Technology </a></td>
+        		<td><a href="/cluster7"> Equal Opportunity </a></td>
+        		<td><a href="/cluster8"> Scientific Research </a></td>
+        		<td><a href="/cluster9"> Consulting Services </a></td>
+        	</tr>
+        </table>
+    </div>
+
+    {% block content %}
+    {% endblock %}
+
+    <div id="footer">
+    Data from Indeed.com. Analysis by Itelina Ma.
+    </div>
+
+</body>
+</html>

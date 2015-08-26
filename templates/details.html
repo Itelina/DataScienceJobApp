@@ -1,0 +1,26 @@
+{% extends 'layout.html' %}
+
+{% block title %}Details{% endblock %}
+
+{% block content %}
+
+<link href="static/css/nv.d3.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.2/d3.min.js" charset="utf-8"></script>
+<script src="static/js/nv.d3.min.js"></script> 
+<script src="static/js/stream_layers.js"></script>
+
+<script> var data1 = {{ data1|safe }}; var data2 = {{ data2|safe }};</script>
+
+<div id="bargraphs">
+	<h3><center> Top Words in Job Postings </center></h3>
+	<svg height=480></svg>
+</div>
+<script src="static/js/multiBarHorizontal.js"></script>
+
+
+<div id="listsheading">
+	<h3><center> Top Relevant Job Postings </center></h3>
+	<div id = "lists"></div><script src="static/js/lists.js"></script>
+</div>
+
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'layout.html' %}
+
+{% block title %}Keyword Summary{% endblock %}
+
+{% block content %}
+
+<script> var data = {{ data|safe }}; </script>
+
+    <div id="section">
+    	<script src="static/js/d3.js"></script>
+		<script src="static/js/d3.layout.cloud.js"></script>
+        <script src="static/js/wordcloud.js"></script>
+    </div>
+{% endblock %}
