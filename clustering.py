@@ -48,10 +48,10 @@ def dataProcessing(data):
     return rawreviews2
 
 def getTopicWords(data):
-	#Input: bag of words output from dataProcessing()
-	#Output: 3 json files 1) word topic distribution 2) top words for each topic 3) job posting to topic matched
+    #Input: bag of words output from dataProcessing()
+    #Output: 3 json files 1) word topic distribution 2) top words for each topic 3) job posting to topic matched
     
-    stopwords = ["deloitte", "adp", "prudential", "using", "sigma", "com", 'san', 'francisco', 'candidate', 'data', 'city', 'such', 'job', 'comcast', 'appropriate', 'experience', 'york']
+    stopwords = ["deloitte", "adp", "prudential", "using", "sigma", "com", 'san', 'francisco', 'candidate', 'data', 'city', 'such', 'job', 'comcast', 'appropriate', 'experience', 'york', 'including', 'skills', 'ability', 'nyu', 'lagone']
     
     #Vectorize bag of words
     vectorizer = CountVectorizer(stop_words=stopwords, ngram_range=(1,2), min_df = 5)
@@ -89,7 +89,10 @@ def getTopicWords(data):
         jobtopic['company'] = newreviews[i][0]
         jobtopic['position'] = newreviews[i][1]
         jobtopic['summary'] = re.sub("\\n", " ", newreviews[i][2])
-        jobtopic['toptopic'] = doc_topic[i].argmax()
+        if doc_topic[i].argmax() == 5:
+            jobtopic['toptopic'] = np.where(doc_topic[i] == sorted(doc_topic[i])[-2])[0][0]
+        else:
+            jobtopic['toptopic'] = doc_topic[i].argmax()
         jobtopic['url'] = newreviews[i][3]
         jobtopics.append(jobtopic)
     
@@ -98,15 +101,16 @@ def getTopicWords(data):
 def makeWordCloud(data):
     jsondata = {}
     for key, values in data.iteritems():
-        newkey = "topic" + str(key)
-        json1 = []
-        for value in values:
-            json2 = {}
-            json2['text'] = value[0].encode('ascii','ignore')
-            json2['size'] = value[1]
-            json1.append(json2)
-        
-        jsondata[newkey] = json1
+        if key != 5:
+            newkey = "topic" + str(key)
+            json1 = []
+            for value in values:
+                json2 = {}
+                json2['text'] = value[0].encode('ascii','ignore')
+                json2['size'] = value[1]
+                json1.append(json2)
+            
+            jsondata[newkey] = json1
     
     return jsondata
 
@@ -131,7 +135,7 @@ def makeBarGraphs(data):
         series['values'] = json1
         jsondata.append(series)
     
-    return [jsondata[0]], [jsondata[1]], [jsondata[2]], [jsondata[3]], [jsondata[4]], [jsondata[5]], [jsondata[6]], [jsondata[7]], [jsondata[8]]
+    return [jsondata[0]], [jsondata[1]], [jsondata[2]], [jsondata[3]], [jsondata[4]], [jsondata[6]], [jsondata[7]], [jsondata[8]]
 
 def makeListData(data):
     topiclists = range(0, 9)
@@ -147,7 +151,7 @@ def makeListData(data):
                 row['url'] = item['url']
                 newdata.append(row)
         finaldata[i] = newdata
-    return finaldata[0], finaldata[1], finaldata[2], finaldata[3], finaldata[4], finaldata[5], finaldata[6], finaldata[7], finaldata[8]
+    return finaldata[0], finaldata[1], finaldata[2], finaldata[3], finaldata[4], finaldata[6], finaldata[7], finaldata[8]
 
 if __name__ == '__main__':
 	
@@ -165,8 +169,8 @@ if __name__ == '__main__':
 
 	print "making json file ..."
 	wordcloud = makeWordCloud(data=topwords)
-	bargraph1, bargraph2, bargraph3, bargraph4, bargraph5, bargraph6, bargraph7, bargraph8, bargraph9 = makeBarGraphs(data=allwords)
-	listdata1, listdata2, listdata3, listdata4, listdata5, listdata6, listdata7, listdata8, listdata9 = makeListData(data=jobtopic)
+	bargraph1, bargraph2, bargraph3, bargraph4, bargraph5, bargraph7, bargraph8, bargraph9 = makeBarGraphs(data=allwords)
+	listdata1, listdata2, listdata3, listdata4, listdata5, listdata7, listdata8, listdata9 = makeListData(data=jobtopic)
 
 	#Printing out Json files
 	print "writing json file ..."
@@ -184,8 +188,6 @@ if __name__ == '__main__':
 		json.dump(bargraph4, f)
 	with open('static/data/bargraph5.json', 'w') as f:
 		json.dump(bargraph5, f)
-	with open('static/data/bargraph6.json', 'w') as f:
-		json.dump(bargraph6, f)
 	with open('static/data/bargraph7.json', 'w') as f:
 		json.dump(bargraph7, f)
 	with open('static/data/bargraph8.json', 'w') as f:
@@ -203,8 +205,6 @@ if __name__ == '__main__':
 		json.dump(listdata4, f)
 	with open('static/data/listdata5.json', 'w') as f:
 		json.dump(listdata5, f)
-	with open('static/data/listdata6.json', 'w') as f:
-		json.dump(listdata6, f)
 	with open('static/data/listdata7.json', 'w') as f:
 		json.dump(listdata7, f)
 	with open('static/data/listdata8.json', 'w') as f:

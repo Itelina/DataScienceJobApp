@@ -4,7 +4,6 @@ import os
 
 app = flask.Flask(__name__)
 
-
 @app.route("/")
 def summary():
 	data=open("static/data/wordsjson.json").read()
@@ -40,12 +39,6 @@ def cluster5():
 	data2=open("static/data/listdata5.json").read()
 	return render_template('details.html', data1=data1, data2=data2)
 
-@app.route("/cluster6")
-def cluster6():
-	data1=open("static/data/bargraph6.json").read()
-	data2=open("static/data/listdata6.json").read()
-	return render_template('details.html', data1=data1, data2=data2)
-
 @app.route("/cluster7")
 def cluster7():
 	data1=open("static/data/bargraph7.json").read()
@@ -66,5 +59,4 @@ def cluster9():
 
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 5000))
-    app.debug = True
     app.run(host='0.0.0.0', port=port)

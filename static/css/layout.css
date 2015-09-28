@@ -6,6 +6,7 @@
     padding:5px;
     position:absolute;
     width: 100%;
+    z-index:2;
 }
 
 #navtable {
@@ -19,7 +20,7 @@
 }
 #section {
     width:100%;
-    top:100px;
+    top:140px;
     float:left;
     padding:0px; 
     position:fixed;
@@ -33,12 +34,13 @@
     width:30%;
     padding:20px; 
     position:fixed;
+    overflow-y: auto;
 }
 
 #listsheading {
     float:left;
-    top:110px;
-    left:550px;
+    top:90px;
+    left:500px;
     width: 55%;
     padding:20px;
     height:10%; 
@@ -47,14 +49,18 @@
 
 #lists {
     float:left;
-    width: 60%;
-    padding:20px; 
-    height: 550px;
+    width: 50%;
+    padding:0px; 
+    height: 390px;
     position:fixed;
     overflow-y: auto;
-    font-size: 16px;
+    font-size: 12px;
     font: serif;
 }
+
+/*#body {
+   transform: scale(.85);
+}*/
 
 a {
   color: #252525;
@@ -72,13 +78,15 @@ a:hover {
 a:active {
     background-color: #636363;
 }
+
 #footer {
     background-color:black;
-    position:absolute;
+    position:fixed;
     width:100%;
     bottom:0px;
     color:white;
     clear:both;
     text-align:center;
     padding:5px; 
+    font-size:10px;
 }
